@@ -1,0 +1,54 @@
+{
+	"name": "result",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AmazonS32",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AmazonS3Location",
+				"bucketName": "outputyoutubebucket",
+				"folderPath": "azureresult",
+				"fileName": "result"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "category_title",
+				"type": "String"
+			},
+			{
+				"name": "avg_view_count",
+				"type": "String"
+			},
+			{
+				"name": "avg_time_after_publish",
+				"type": "String"
+			},
+			{
+				"name": "avg_likes_to_dislikes",
+				"type": "String"
+			},
+			{
+				"name": "avg_reactions_to_views",
+				"type": "String"
+			},
+			{
+				"name": "count_vid",
+				"type": "String"
+			},
+			{
+				"name": "country",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

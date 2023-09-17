@@ -1,0 +1,80 @@
+{
+	"name": "youtube_flowlet_daily",
+	"properties": {
+		"type": "Flowlet",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "timeAfterPublish"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "join"
+				},
+				{
+					"name": "TrendingDateFilter"
+				},
+				{
+					"name": "Data"
+				},
+				{
+					"name": "Cat"
+				},
+				{
+					"name": "output1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     minusValue as long (toLong(minus(trending_date,publishedAt))),",
+				"     startingDate as date (toDate('2011-01-20'))",
+				"}",
+				"input(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long",
+				"     ),",
+				"     order: 0,",
+				"     allowSchemaDrift: true) ~> Data",
+				"input(output(",
+				"          category_id as string,",
+				"          category_title as string",
+				"     ),",
+				"     order: 1,",
+				"     allowSchemaDrift: false) ~> Cat",
+				"TrendingDateFilter derive(timeAfterPublish = iif($minusValue > 0, $minusValue, 0l),",
+				"          reactions = likes + dislikes) ~> timeAfterPublish",
+				"timeAfterPublish derive(reactionsToViews = (reactions * 100) /view_count,",
+				"          likesToDislikes = (likes * 100) / reactions) ~> derivedColumn1",
+				"derivedColumn1 aggregate(groupBy(category_title),",
+				"     avg_view_count_new = avg(view_count),",
+				"          avg_time_after_publish_new = avg(timeAfterPublish),",
+				"          avg_likes_to_dislikes_new = avg(likesToDislikes),",
+				"          avg_reactions_to_views_new = avg(reactionsToViews),",
+				"          count_vid_new = count(video_id)) ~> aggregate1",
+				"Cat, Data join(category_id == categoryId,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join",
+				"join filter(toDate(trending_date) > $startingDate) ~> TrendingDateFilter",
+				"aggregate1 output() ~> output1"
+			]
+		}
+	}
+}

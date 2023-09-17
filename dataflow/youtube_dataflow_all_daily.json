@@ -1,0 +1,993 @@
+{
+	"name": "youtube_dataflow_all_daily",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "GB",
+						"type": "DatasetReference"
+					},
+					"name": "GBData"
+				},
+				{
+					"dataset": {
+						"referenceName": "GBCat",
+						"type": "DatasetReference"
+					},
+					"name": "GBCat"
+				},
+				{
+					"dataset": {
+						"referenceName": "BR",
+						"type": "DatasetReference"
+					},
+					"name": "BRData"
+				},
+				{
+					"dataset": {
+						"referenceName": "GBCat",
+						"type": "DatasetReference"
+					},
+					"name": "BRCat"
+				},
+				{
+					"dataset": {
+						"referenceName": "CA",
+						"type": "DatasetReference"
+					},
+					"name": "CAData"
+				},
+				{
+					"dataset": {
+						"referenceName": "CACat",
+						"type": "DatasetReference"
+					},
+					"name": "CACat"
+				},
+				{
+					"dataset": {
+						"referenceName": "DE",
+						"type": "DatasetReference"
+					},
+					"name": "DEData"
+				},
+				{
+					"dataset": {
+						"referenceName": "DECat",
+						"type": "DatasetReference"
+					},
+					"name": "DECat"
+				},
+				{
+					"dataset": {
+						"referenceName": "FR",
+						"type": "DatasetReference"
+					},
+					"name": "FRData"
+				},
+				{
+					"dataset": {
+						"referenceName": "FRCat",
+						"type": "DatasetReference"
+					},
+					"name": "FRCat"
+				},
+				{
+					"dataset": {
+						"referenceName": "INCat",
+						"type": "DatasetReference"
+					},
+					"name": "INCat"
+				},
+				{
+					"dataset": {
+						"referenceName": "IN",
+						"type": "DatasetReference"
+					},
+					"name": "INDat"
+				},
+				{
+					"dataset": {
+						"referenceName": "KR",
+						"type": "DatasetReference"
+					},
+					"name": "KRDat"
+				},
+				{
+					"dataset": {
+						"referenceName": "KRCat",
+						"type": "DatasetReference"
+					},
+					"name": "KRCat"
+				},
+				{
+					"dataset": {
+						"referenceName": "MXCat",
+						"type": "DatasetReference"
+					},
+					"name": "MXCat"
+				},
+				{
+					"dataset": {
+						"referenceName": "MX",
+						"type": "DatasetReference"
+					},
+					"name": "MXDat"
+				},
+				{
+					"dataset": {
+						"referenceName": "RU",
+						"type": "DatasetReference"
+					},
+					"name": "RUDat"
+				},
+				{
+					"dataset": {
+						"referenceName": "RUCat",
+						"type": "DatasetReference"
+					},
+					"name": "RUCat"
+				},
+				{
+					"dataset": {
+						"referenceName": "USCat",
+						"type": "DatasetReference"
+					},
+					"name": "USCat"
+				},
+				{
+					"dataset": {
+						"referenceName": "US",
+						"type": "DatasetReference"
+					},
+					"name": "USDat"
+				},
+				{
+					"dataset": {
+						"referenceName": "result",
+						"type": "DatasetReference"
+					},
+					"name": "currentData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "result",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "BRFlowlet",
+					"flowlet": {
+						"referenceName": "youtube_flowlet_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "minus(trending_date, publishedAt)",
+							"startingDate": "toDate(\"2021-01-01\")"
+						}
+					}
+				},
+				{
+					"name": "GBFlowlet",
+					"flowlet": {
+						"referenceName": "youtube_flowlet_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "toLong(minus(trending_date,publishedAt))",
+							"startingDate": "toDate('2011-01-20')"
+						}
+					}
+				},
+				{
+					"name": "CAFlowlet",
+					"flowlet": {
+						"referenceName": "youtube_flowlet_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "toLong(minus(trending_date,publishedAt))",
+							"startingDate": "toDate('2011-01-20')"
+						}
+					}
+				},
+				{
+					"name": "DEFlowlet",
+					"flowlet": {
+						"referenceName": "youtube_flowlet_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "toLong(minus(trending_date,publishedAt))",
+							"startingDate": "toDate('2011-01-20')"
+						}
+					}
+				},
+				{
+					"name": "FRFlowlet",
+					"flowlet": {
+						"referenceName": "youtube_flowlet_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "toLong(minus(trending_date,publishedAt))",
+							"startingDate": "toDate('2011-01-20')"
+						}
+					}
+				},
+				{
+					"name": "INFlowlet",
+					"flowlet": {
+						"referenceName": "youtube_flowlet_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "minus(trending_date, publishedAt)",
+							"startingDate": "toDate(\"2021-01-01\")"
+						}
+					}
+				},
+				{
+					"name": "KRFlowlet",
+					"flowlet": {
+						"referenceName": "youtube_flowlet_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "toLong(minus(trending_date,publishedAt))",
+							"startingDate": "toDate('2011-01-20')"
+						}
+					}
+				},
+				{
+					"name": "MXFlowlet",
+					"flowlet": {
+						"referenceName": "youtube_flowlet_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "toLong(minus(trending_date,publishedAt))",
+							"startingDate": "toDate('2011-01-20')"
+						}
+					}
+				},
+				{
+					"name": "RUFlowlet",
+					"flowlet": {
+						"referenceName": "youtube_flowlet_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "toLong(minus(trending_date,publishedAt))",
+							"startingDate": "toDate('2011-01-20')"
+						}
+					}
+				},
+				{
+					"name": "USFlowlet",
+					"flowlet": {
+						"referenceName": "youtube_flowlet_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "toLong(minus(trending_date,publishedAt))",
+							"startingDate": "toDate('2011-01-20')"
+						}
+					}
+				},
+				{
+					"name": "GBCatFlat"
+				},
+				{
+					"name": "BRCatFlat"
+				},
+				{
+					"name": "countryBR"
+				},
+				{
+					"name": "union1"
+				},
+				{
+					"name": "countryGB"
+				},
+				{
+					"name": "CACatFlat"
+				},
+				{
+					"name": "countryCA"
+				},
+				{
+					"name": "DECatFlat",
+					"description": "Wycofywanie tablic z lokalizacji items do  z kolumnami „category_id, category_title”"
+				},
+				{
+					"name": "countryDE"
+				},
+				{
+					"name": "FRCatFlat"
+				},
+				{
+					"name": "countryFR"
+				},
+				{
+					"name": "INCatFlat"
+				},
+				{
+					"name": "countryIN"
+				},
+				{
+					"name": "KRCatFlat"
+				},
+				{
+					"name": "countryKR"
+				},
+				{
+					"name": "MXCatFlat"
+				},
+				{
+					"name": "countryMX"
+				},
+				{
+					"name": "RUCatFlat"
+				},
+				{
+					"name": "countryRU"
+				},
+				{
+					"name": "USCatFlat"
+				},
+				{
+					"name": "countryUS"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     minusValue as long (minus(trending_date,publishedAt)),",
+				"     dateFrom as date (toDate(\"2020-01-01\"))",
+				"}",
+				"source(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          tags as string,",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long,",
+				"          thumbnail_link as string,",
+				"          comments_disabled as string,",
+				"          ratings_disabled as string,",
+				"          {description\\r} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> GBData",
+				"source(output(",
+				"          kind as string,",
+				"          etag as string,",
+				"          items as (kind as string, etag as string, id as string, snippet as (title as string, assignable as boolean, channelId as string))[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> GBCat",
+				"source(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          tags as string,",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long,",
+				"          thumbnail_link as string,",
+				"          comments_disabled as string,",
+				"          ratings_disabled as string,",
+				"          description as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> BRData",
+				"source(output(",
+				"          kind as string,",
+				"          etag as string,",
+				"          items as (kind as string, etag as string, id as string, snippet as (title as string, assignable as boolean, channelId as string))[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> BRCat",
+				"source(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          tags as string,",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long,",
+				"          thumbnail_link as string,",
+				"          comments_disabled as string,",
+				"          ratings_disabled as string,",
+				"          description as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CAData",
+				"source(output(",
+				"          kind as string,",
+				"          etag as string,",
+				"          items as (kind as string, etag as string, id as string, snippet as (title as string, assignable as boolean, channelId as string))[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> CACat",
+				"source(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          tags as string,",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long,",
+				"          thumbnail_link as string,",
+				"          comments_disabled as string,",
+				"          ratings_disabled as string,",
+				"          description as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> DEData",
+				"source(output(",
+				"          kind as string,",
+				"          etag as string,",
+				"          items as (kind as string, etag as string, id as string, snippet as (title as string, assignable as boolean, channelId as string))[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> DECat",
+				"source(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp,",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          tags as string,",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long,",
+				"          thumbnail_link as string,",
+				"          comments_disabled as string,",
+				"          ratings_disabled as string,",
+				"          description as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> FRData",
+				"source(output(",
+				"          kind as string,",
+				"          etag as string,",
+				"          items as (kind as string, etag as string, id as string, snippet as (title as string, assignable as boolean, channelId as string))[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> FRCat",
+				"source(output(",
+				"          kind as string,",
+				"          etag as string,",
+				"          items as (kind as string, etag as string, id as string, snippet as (title as string, assignable as boolean, channelId as string))[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> INCat",
+				"source(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          tags as string,",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long,",
+				"          thumbnail_link as string,",
+				"          comments_disabled as string,",
+				"          ratings_disabled as string,",
+				"          {description\\r} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> INDat",
+				"source(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          tags as string,",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long,",
+				"          thumbnail_link as string,",
+				"          comments_disabled as string,",
+				"          ratings_disabled as string,",
+				"          {description\\r} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> KRDat",
+				"source(output(",
+				"          kind as string,",
+				"          etag as string,",
+				"          items as (kind as string, etag as string, id as string, snippet as (title as string, assignable as boolean, channelId as string))[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> KRCat",
+				"source(output(",
+				"          kind as string,",
+				"          etag as string,",
+				"          items as (kind as string, etag as string, id as string, snippet as (title as string, assignable as boolean, channelId as string))[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> MXCat",
+				"source(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          tags as string,",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long,",
+				"          thumbnail_link as string,",
+				"          comments_disabled as string,",
+				"          ratings_disabled as string,",
+				"          {description\\r} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> MXDat",
+				"source(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          tags as string,",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long,",
+				"          thumbnail_link as string,",
+				"          comments_disabled as string,",
+				"          ratings_disabled as string,",
+				"          {description\\r} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> RUDat",
+				"source(output(",
+				"          kind as string,",
+				"          etag as string,",
+				"          items as (kind as string, etag as string, id as string, snippet as (title as string, assignable as boolean, channelId as string))[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> RUCat",
+				"source(output(",
+				"          kind as string,",
+				"          etag as string,",
+				"          items as (kind as string, etag as string, id as string, snippet as (title as string, assignable as boolean, channelId as string))[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> USCat",
+				"source(output(",
+				"          video_id as string,",
+				"          title as string,",
+				"          publishedAt as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          channelId as string,",
+				"          channelTitle as string,",
+				"          categoryId as string,",
+				"          trending_date as timestamp 'yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'',",
+				"          tags as string,",
+				"          view_count as long,",
+				"          likes as long,",
+				"          dislikes as long,",
+				"          comment_count as long,",
+				"          thumbnail_link as string,",
+				"          comments_disabled as string,",
+				"          ratings_disabled as string,",
+				"          {description\\r} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> USDat",
+				"source(output(",
+				"          category_title as string,",
+				"          avg_view_count as double,",
+				"          avg_time_after_publish as double,",
+				"          avg_likes_to_dislikes as double,",
+				"          avg_reactions_to_views as double,",
+				"          count_vid as long,",
+				"          country as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> currentData",
+				"BRData, BRCatFlat compose(mapParameter(",
+				"          minusValue = minus(trending_date, publishedAt),",
+				"          startingDate = toDate(\"2021-01-01\")",
+				"     ),",
+				"     mapColumn(",
+				"          video_id,",
+				"          title,",
+				"          publishedAt,",
+				"          channelId,",
+				"          channelTitle,",
+				"          categoryId,",
+				"          trending_date,",
+				"          view_count,",
+				"          likes,",
+				"          dislikes,",
+				"          comment_count",
+				"     ),mapColumn(",
+				"          category_id,",
+				"          category_title",
+				"     ),",
+				"     composition: 'youtube_flowlet_daily') ~> BRFlowlet@(output1)",
+				"GBData, GBCatFlat compose(mapParameter(",
+				"          minusValue = toLong(minus(trending_date,publishedAt)),",
+				"          startingDate = toDate('2011-01-20')",
+				"     ),",
+				"     mapColumn(",
+				"          video_id,",
+				"          title,",
+				"          publishedAt,",
+				"          channelId,",
+				"          channelTitle,",
+				"          categoryId,",
+				"          trending_date,",
+				"          view_count,",
+				"          likes,",
+				"          dislikes,",
+				"          comment_count",
+				"     ),mapColumn(",
+				"          category_id,",
+				"          category_title",
+				"     ),",
+				"     composition: 'youtube_flowlet_daily') ~> GBFlowlet@(output1)",
+				"CAData, CACatFlat compose(mapParameter(",
+				"          minusValue = toLong(minus(trending_date,publishedAt)),",
+				"          startingDate = toDate('2011-01-20')",
+				"     ),",
+				"     mapColumn(",
+				"          video_id,",
+				"          title,",
+				"          publishedAt,",
+				"          channelId,",
+				"          channelTitle,",
+				"          categoryId,",
+				"          trending_date,",
+				"          view_count,",
+				"          likes,",
+				"          dislikes,",
+				"          comment_count",
+				"     ),mapColumn(",
+				"          category_id,",
+				"          category_title",
+				"     ),",
+				"     composition: 'youtube_flowlet_daily') ~> CAFlowlet@(output1)",
+				"DEData, DECatFlat compose(mapParameter(",
+				"          minusValue = toLong(minus(trending_date,publishedAt)),",
+				"          startingDate = toDate('2011-01-20')",
+				"     ),",
+				"     mapColumn(",
+				"          video_id,",
+				"          title,",
+				"          publishedAt,",
+				"          channelId,",
+				"          channelTitle,",
+				"          categoryId,",
+				"          trending_date,",
+				"          view_count,",
+				"          likes,",
+				"          dislikes,",
+				"          comment_count",
+				"     ),mapColumn(",
+				"          category_id,",
+				"          category_title",
+				"     ),",
+				"     composition: 'youtube_flowlet_daily') ~> DEFlowlet@(output1)",
+				"FRData, FRCatFlat compose(mapParameter(",
+				"          minusValue = toLong(minus(trending_date,publishedAt)),",
+				"          startingDate = toDate('2011-01-20')",
+				"     ),",
+				"     mapColumn(",
+				"          video_id,",
+				"          title,",
+				"          publishedAt,",
+				"          channelId,",
+				"          channelTitle,",
+				"          categoryId,",
+				"          trending_date,",
+				"          view_count,",
+				"          likes,",
+				"          dislikes,",
+				"          comment_count",
+				"     ),mapColumn(",
+				"          category_id,",
+				"          category_title",
+				"     ),",
+				"     composition: 'youtube_flowlet_daily') ~> FRFlowlet@(output1)",
+				"INDat, INCatFlat compose(mapParameter(",
+				"          minusValue = minus(trending_date, publishedAt),",
+				"          startingDate = toDate(\"2021-01-01\")",
+				"     ),",
+				"     mapColumn(",
+				"          video_id,",
+				"          title,",
+				"          publishedAt,",
+				"          channelId,",
+				"          channelTitle,",
+				"          categoryId,",
+				"          trending_date,",
+				"          view_count,",
+				"          likes,",
+				"          dislikes,",
+				"          comment_count",
+				"     ),mapColumn(",
+				"          category_id,",
+				"          category_title",
+				"     ),",
+				"     composition: 'youtube_flowlet_daily') ~> INFlowlet@(output1)",
+				"KRDat, KRCatFlat compose(mapParameter(",
+				"          minusValue = toLong(minus(trending_date,publishedAt)),",
+				"          startingDate = toDate('2011-01-20')",
+				"     ),",
+				"     mapColumn(",
+				"          video_id,",
+				"          title,",
+				"          publishedAt,",
+				"          channelId,",
+				"          channelTitle,",
+				"          categoryId,",
+				"          trending_date,",
+				"          view_count,",
+				"          likes,",
+				"          dislikes,",
+				"          comment_count",
+				"     ),mapColumn(",
+				"          category_id,",
+				"          category_title",
+				"     ),",
+				"     composition: 'youtube_flowlet_daily') ~> KRFlowlet@(output1)",
+				"MXDat, MXCatFlat compose(mapParameter(",
+				"          minusValue = toLong(minus(trending_date,publishedAt)),",
+				"          startingDate = toDate('2011-01-20')",
+				"     ),",
+				"     mapColumn(",
+				"          video_id,",
+				"          title,",
+				"          publishedAt,",
+				"          channelId,",
+				"          channelTitle,",
+				"          categoryId,",
+				"          trending_date,",
+				"          view_count,",
+				"          likes,",
+				"          dislikes,",
+				"          comment_count",
+				"     ),mapColumn(",
+				"          category_id,",
+				"          category_title",
+				"     ),",
+				"     composition: 'youtube_flowlet_daily') ~> MXFlowlet@(output1)",
+				"RUDat, RUCatFlat compose(mapParameter(",
+				"          minusValue = toLong(minus(trending_date,publishedAt)),",
+				"          startingDate = toDate('2011-01-20')",
+				"     ),",
+				"     mapColumn(",
+				"          video_id,",
+				"          title,",
+				"          publishedAt,",
+				"          channelId,",
+				"          channelTitle,",
+				"          categoryId,",
+				"          trending_date,",
+				"          view_count,",
+				"          likes,",
+				"          dislikes,",
+				"          comment_count",
+				"     ),mapColumn(",
+				"          category_id,",
+				"          category_title",
+				"     ),",
+				"     composition: 'youtube_flowlet_daily') ~> RUFlowlet@(output1)",
+				"USDat, USCatFlat compose(mapParameter(",
+				"          minusValue = toLong(minus(trending_date,publishedAt)),",
+				"          startingDate = toDate('2011-01-20')",
+				"     ),",
+				"     mapColumn(",
+				"          video_id,",
+				"          title,",
+				"          publishedAt,",
+				"          channelId,",
+				"          channelTitle,",
+				"          categoryId,",
+				"          trending_date,",
+				"          view_count,",
+				"          likes,",
+				"          dislikes,",
+				"          comment_count",
+				"     ),mapColumn(",
+				"          category_id,",
+				"          category_title",
+				"     ),",
+				"     composition: 'youtube_flowlet_daily') ~> USFlowlet@(output1)",
+				"GBCat foldDown(unroll(items),",
+				"     mapColumn(",
+				"          category_title = items.snippet.title,",
+				"          category_id = items.id",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> GBCatFlat",
+				"BRCat foldDown(unroll(items),",
+				"     mapColumn(",
+				"          category_id = items.id,",
+				"          category_title = items.snippet.title",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> BRCatFlat",
+				"BRFlowlet@output1 derive(country = \"BR\") ~> countryBR",
+				"countryBR, countryGB, countryCA, countryDE, countryFR, countryIN, countryKR, countryMX, countryRU, countryUS union(byName: true)~> union1",
+				"GBFlowlet@output1 derive(country = \"GB\") ~> countryGB",
+				"CACat foldDown(unroll(items),",
+				"     mapColumn(",
+				"          category_id = items.id,",
+				"          category_title = items.snippet.title",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> CACatFlat",
+				"CAFlowlet@output1 derive(country = \"CA\") ~> countryCA",
+				"DECat foldDown(unroll(items, items),",
+				"     mapColumn(",
+				"          category_title = items.snippet.title,",
+				"          category_id = items.id",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> DECatFlat",
+				"DEFlowlet@output1 derive(country = \"DE\") ~> countryDE",
+				"FRCat foldDown(unroll(items),",
+				"     mapColumn(",
+				"          category_title = items.snippet.title,",
+				"          category_id = items.id",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> FRCatFlat",
+				"FRFlowlet@output1 derive(country = \"FR\") ~> countryFR",
+				"INCat foldDown(unroll(items),",
+				"     mapColumn(",
+				"          category_title = items.snippet.title,",
+				"          category_id = items.id",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> INCatFlat",
+				"INFlowlet@output1 derive(country = \"IN\") ~> countryIN",
+				"KRCat foldDown(unroll(items),",
+				"     mapColumn(",
+				"          category_title = items.snippet.title,",
+				"          category_id = items.id",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> KRCatFlat",
+				"KRFlowlet@output1 derive(country = \"KR\") ~> countryKR",
+				"MXCat foldDown(unroll(items),",
+				"     mapColumn(",
+				"          category_title = items.snippet.title,",
+				"          category_id = items.id",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> MXCatFlat",
+				"MXFlowlet@output1 derive(country = \"MX\") ~> countryMX",
+				"RUCat foldDown(unroll(items),",
+				"     mapColumn(",
+				"          category_title = items.snippet.title,",
+				"          category_id = items.id",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> RUCatFlat",
+				"RUFlowlet@output1 derive(country = \"RU\") ~> countryRU",
+				"USCat foldDown(unroll(items),",
+				"     mapColumn(",
+				"          category_title = items.snippet.title,",
+				"          category_id = items.id",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> USCatFlat",
+				"USFlowlet@output1 derive(country = \"US\") ~> countryUS",
+				"union1, currentData join(union1@country == currentData@country",
+				"     && union1@category_title == currentData@category_title,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 derive(count_vid_updated = count_vid + count_vid_new,",
+				"          avg_view_count_updated = ((avg_view_count * count_vid) + (avg_view_count_new * count_vid_new)) / (count_vid_new + count_vid),",
+				"          avg_time_after_publish_updated = ((avg_time_after_publish * count_vid) + (avg_time_after_publish_new * count_vid_new)) / (count_vid_new + count_vid),",
+				"          avg_likes_to_dislikes_updated = ((avg_likes_to_dislikes * count_vid) + (avg_likes_to_dislikes_new * count_vid_new)) / (count_vid_new + count_vid),",
+				"          avg_reactions_to_views_updated = ((avg_reactions_to_views * count_vid) + (avg_reactions_to_views_new * count_vid_new)) / (count_vid_new + count_vid)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          category_title as string,",
+				"          avg_view_count as string,",
+				"          avg_time_after_publish as string,",
+				"          avg_likes_to_dislikes as string,",
+				"          avg_reactions_to_views as string,",
+				"          count_vid as string,",
+				"          country as string",
+				"     ),",
+				"     partitionFileNames:[('result' + toString(currentDate()))],",
+				"     truncate: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          category_title = currentData@category_title,",
+				"          avg_view_count = avg_view_count_updated,",
+				"          avg_time_after_publish = avg_time_after_publish_updated,",
+				"          avg_likes_to_dislikes = avg_likes_to_dislikes_updated,",
+				"          avg_reactions_to_views = avg_reactions_to_views_updated,",
+				"          count_vid = count_vid_updated,",
+				"          country = currentData@country",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink"
+			]
+		}
+	}
+}

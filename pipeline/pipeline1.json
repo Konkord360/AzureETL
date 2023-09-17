@@ -1,0 +1,38 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "youtube",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "youtube_dataflow_all_daily",
+						"type": "DataFlowReference",
+						"parameters": {
+							"minusValue": "minus(trending_date,publishedAt)",
+							"dateFrom": "toDate(\"2020-01-01\")"
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Coarse"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-07-23T19:05:33Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

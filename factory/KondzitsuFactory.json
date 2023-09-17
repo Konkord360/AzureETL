@@ -1,0 +1,9 @@
+{
+	"name": "KondzitsuFactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2ac8bd1a-a719-444b-a457-03f642aac701",
+		"tenantId": "d8a1b7fd-65b1-4c60-af67-9f57a36141db"
+	}
+}
