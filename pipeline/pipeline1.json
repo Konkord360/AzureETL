@@ -16,11 +16,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "youtube_dataflow_all_daily",
+						"referenceName": "youtube_dataflow_all",
 						"type": "DataFlowReference",
 						"parameters": {
-							"minusValue": "minus(trending_date,publishedAt)",
-							"dateFrom": "toDate(\"2020-01-01\")"
+							"minusValue": "minus(trending_date,publishedAt)"
 						}
 					},
 					"compute": {
