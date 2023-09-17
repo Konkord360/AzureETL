@@ -29,9 +29,6 @@
 				}
 			],
 			"scriptLines": [
-				"parameters{",
-				"     minusValue as long (toLong(minus(trending_date,publishedAt)))",
-				"}",
 				"input(output(",
 				"          video_id as string,",
 				"          title as string,",
@@ -53,7 +50,7 @@
 				"     ),",
 				"     order: 1,",
 				"     allowSchemaDrift: false) ~> Cat",
-				"join1 derive(timeAfterPublish = iif($minusValue > 0, $minusValue, 0l),",
+				"join1 derive(timeAfterPublish = minus(trending_date,publishedAt) / 86400000 ,",
 				"          reactions = likes + dislikes) ~> timeAfterPublish",
 				"timeAfterPublish derive(reactionsToViews = (reactions * 100) /view_count,",
 				"          likesToDislikes = (likes * 100) / reactions) ~> derivedColumn1",

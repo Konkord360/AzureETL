@@ -159,10 +159,7 @@
 					"name": "BRFlowlet",
 					"flowlet": {
 						"referenceName": "youtube_flowlet",
-						"type": "DataFlowReference",
-						"parameters": {
-							"minusValue": "minus(trending_date,publishedAt)"
-						}
+						"type": "DataFlowReference"
 					}
 				},
 				{
@@ -624,10 +621,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> USDat",
-				"BRData, BRCatFlat compose(mapParameter(",
-				"          minusValue = minus(trending_date,publishedAt)",
-				"     ),",
-				"     mapColumn(",
+				"BRData, BRCatFlat compose(mapColumn(",
 				"          video_id,",
 				"          title,",
 				"          publishedAt,",
